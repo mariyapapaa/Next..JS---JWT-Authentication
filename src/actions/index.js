@@ -136,6 +136,10 @@ export async function fetchAuthUserAction() {
 }
 
 export async function logoutAction() {
-  const getCookies = cookies();
-  getCookies.set("token", "");
+  const cookieStore = await cookies();
+  cookieStore.delete("token");
+  return {
+    success: true,
+    message: "Logged out successfully",
+  };
 }
